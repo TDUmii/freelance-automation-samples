@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+*.zip
+*.xlsx
+*.xls
+.env
+.env.*
+!*.example
+node_modules/
+.DS_Store
