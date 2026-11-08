@@ -1,0 +1,26 @@
+name: Verify portfolio prototypes
+on:
+  push:
+    branches: [main]
+  pull_request:
+jobs:
+  python-excel:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: python -m pip install -r requirements.txt
+      - run: python -m unittest discover -s excel_csv_cleaner -p 'test_*.py' -v
+  gmail-draft:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: gmail_draft_mailmerge
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+      - run: node test_plan.js
